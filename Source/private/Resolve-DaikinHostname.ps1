@@ -6,17 +6,17 @@
     .AUTHOREMAIL hannes.palmquist@outlook.com
     .CREATEDDATE 2020-10-04
     .COMPANYNAME Personal
-    .COPYRIGHT (c) 2020, , All Rights Reserved
+    .COPYRIGHT (c) 2020, Hannes Palmquist, All Rights Reserved
 #>
 function Resolve-DaikinHostname {
     <#
     .DESCRIPTION
-        Function tests connection to specified target
+        Resolves the IP address if hostname is specified as FQDN/Hostname
     .PARAMETER Hostname
         IP or FQDN for device
     .EXAMPLE
         Resolve-DaikinHostname -Hostname daikin.network.com
-        Returns true or false depending on connection status
+        Returns the IP address of the target device
     #>
 
     [CmdletBinding()] # Enabled advanced function support
@@ -27,10 +27,16 @@ function Resolve-DaikinHostname {
         if (-not (Assert-FunctionRequirements -InstalledModules 'NetTCPIP')) { break }
         $SavedProgressPreference = $global:progresspreference
         $Global:ProgressPreference = 'SilentlyContinue'
-        if (Test-DaikinConnectivity -HostName:$Hostname) {
-            return Test-NetConnection -ComputerName $Hostname -WarningAction SilentlyContinue | select-object -expand remoteaddress
-        } else {
-            throw "Device does not respond"
+        try {
+            if (Test-DaikinConnectivity -HostName:$Hostname) {
+                return Test-NetConnection -ComputerName $Hostname -WarningAction SilentlyContinue | select-object -expand remoteaddress
+            } else {
+                throw "Device does not respond"
+            }
+        } catch {
+            throw 'Failed to resolve IP address of hostname'
+        } finally {
+            $global:ProgressPreference = $SavedProgressPreference
         }
     }
 }

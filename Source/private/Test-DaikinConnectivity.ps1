@@ -6,22 +6,22 @@
     .AUTHOREMAIL hannes.palmquist@outlook.com
     .CREATEDDATE 2020-10-04
     .COMPANYNAME Personal
-    .COPYRIGHT (c) 2020, , All Rights Reserved
+    .COPYRIGHT (c) 2020, Hannes Palmquist, All Rights Reserved
 #>
 function Test-DaikinConnectivity {
     <#
     .DESCRIPTION
-        asd
-    .PARAMETER Name
-        Description
+        Function tests connection to specified target
+    .PARAMETER Hostname
+        IP or FQDN for device
     .EXAMPLE
-        Test-DaikinConnectivity
-        Description of example
+        Test-DaikinConnectivity -Hostname daikin.network.com
+        Returns true or false depending on if the device responds
     #>
 
     [CmdletBinding()] # Enabled advanced function support
     param(
-        $Hostname
+        [Parameter(Mandatory)]$Hostname
     )
 
     BEGIN {
@@ -38,7 +38,7 @@ function Test-DaikinConnectivity {
                 return $false
             }
         } catch {
-            Write-Error -Message 'Failed to check status of daikin device' -TargetObject $Hostname -ErrorRecord $_
+            throw 'Failed to check status of daikin device'
         } finally {
             $global:ProgressPreference = $SavedProgressPreference
         }
