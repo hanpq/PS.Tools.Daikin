@@ -19,7 +19,7 @@ jobs:
         $PesterConfiguration.Run.Path = "Tests/Unit"
         $PesterConfiguration.Run.Exit = $true
         $PesterConfiguration.CodeCoverage.Enabled = $true
-        $PesterConfiguration.CodeCoverage.Path = "Source/public/*"
+        $PesterConfiguration.CodeCoverage.Path = @("Source/public/*","Source/private/*")
         $PesterConfiguration.Output.Verbosity = "Detailed"
         Invoke-Pester -Configuration $PesterConfiguration
       shell: pwsh
