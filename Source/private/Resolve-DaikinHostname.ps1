@@ -30,7 +30,7 @@ function Resolve-DaikinHostname {
         if (Test-DaikinConnectivity -HostName:$Hostname) {
             return Test-NetConnection -ComputerName $Hostname -WarningAction SilentlyContinue | select-object -expand remoteaddress
         } else {
-            Write-Error -Message 'Device does not respond' -TargetObject $Hostname
+            throw "Device does not respond"
         }
     }
 }
