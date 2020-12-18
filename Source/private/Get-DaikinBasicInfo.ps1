@@ -10,12 +10,13 @@
 function Get-DaikinBasicInfo {
     <#
     .DESCRIPTION
-        Powershell Module to control a Daikin AirCon unit
-    .PARAMETER Name
-        Description
+        Retreives daikin basic info object
+    .PARAMETER Hostname
+        IP of device
     .EXAMPLE
-        Get-DaikinBasicInfo
-        Description of example
+        Get-DaikinBasicInfo -Hostname 192.168.1.1
+        
+        Returns the basic info response from the device
     #>
 
     [CmdletBinding()] # Enabled advanced function support
@@ -23,9 +24,19 @@ function Get-DaikinBasicInfo {
         $Hostname
     )
     PROCESS {
-        $Result = Invoke-RestMethod -Uri ('http://{0}/common/basic_info' -f $Hostname) -Method GET
-        $Result = Convert-DaikinResponse -String $Result
-        $Result
+        try {
+            $Result = Invoke-RestMethod -Uri ('http://{0}/common/basic_info' -f $Hostname) -Method GET -ErrorAction Stop
+        } catch {
+            throw 'Failed to invoke rest method'
+        }
+
+        try {
+            $Result = Convert-DaikinResponse -String $Result -ErrorAction Stop
+        } catch {
+            throw 'Failed to convert daikin response'
+        }
+
+        return $Result
     }
 }
 #endregion

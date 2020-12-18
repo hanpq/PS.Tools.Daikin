@@ -13,7 +13,7 @@ function Get-DaikinControlInfo {
     .DESCRIPTION
         Retrevies daikin control info response and optionally converts it into a more readable format
     .PARAMETER Hostname
-        IP or FQDN of device
+        IP of device
     .EXAMPLE
         Get-DaikinControlInfo -hostname daikin.network.com
         Returns the control info object converted to a readable format

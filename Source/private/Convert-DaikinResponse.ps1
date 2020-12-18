@@ -11,17 +11,30 @@
 function Convert-DaikinResponse {
     <#
     .DESCRIPTION
-        asd
-    .PARAMETER Name
-        Description
+        Converts string response to a ordered dictionary. By default property names are translated to a more readable alternative. 
+    .PARAMETER String
+        Plain string response from the daikin device
     .EXAMPLE
-        Convert-DaikinResponse
-        Description of example
+        Convert-DaikinResponse -String 'ret=OK,pow=1,mode=7'
+        
+        Name                           Value
+        ----                           -----
+        ret                            OK
+        PowerOn                        True
+        Mode                           AUTO
+    .EXAMPLE
+        Convert-DaikinResponse -String 'ret=OK,pow=1,mode=7'
+
+        Name                           Value
+        ----                           -----
+        ret                            OK   
+        pow                            1    
+        mode                           7
     #>
 
     [CmdletBinding()] # Enabled advanced function support
     param(
-        $String,
+        [Parameter(Mandatory)]$String,
         [switch]$Raw
     )
 
@@ -51,13 +64,13 @@ function Convert-DaikinResponse {
             'dh3'      = 'Mem_COLD_TargetHumidity'
             'dh4'      = 'Mem_HEAT_TargetHumidity'
             'dh5'      = 'Mem_FAN_TargetHumidity'
-            'dh7'      = 'Mem_AUTO_TargetHumidity'
+            'dh7'      = 'Mem_AUTO_TargetHumidity2'
             'dt1'      = 'Mem_AUTO_TargetTemp'
             'dt2'      = 'Mem_DEHUMDIFICATOR_TargetTemp'
             'dt3'      = 'Mem_COLD_TargetTemp'
             'dt4'      = 'Mem_HEAT_TargetTemp'
             'dt5'      = 'Mem_FAN_TargetTemp'
-            'dt7'      = 'Mem_AUTO_TargetTemp'
+            'dt7'      = 'Mem_AUTO_TargetTemp2'
         }
     }
 
