@@ -6,7 +6,7 @@
     .AUTHOREMAIL hannes.palmquist@outlook.com
     .CREATEDDATE 2020-10-03
     .COMPANYNAME Personal
-    .COPYRIGHT (c) 2020, , All Rights Reserved
+    .COPYRIGHT (c) 2020, Hannes Palmquist, All Rights Reserved
 #>
 function Get-DaikinControlInfo {
     <#
