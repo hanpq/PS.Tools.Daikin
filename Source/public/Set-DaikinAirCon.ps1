@@ -11,12 +11,32 @@
 function Set-DaikinAirCon {
     <#
     .DESCRIPTION
-        asd
-    .PARAMETER Name
-        Description
+        Cmdlet allows to configure the aircon device to the desired setting.
+    .PARAMETER Hostname
+        Hostname or IP of the Daikin AirCon device.
+    .PARAMETER PowerOn
+        Set to $true or $false to specify if the master power should be on or off. This does not the affect the connectivity of the control surfice.
+    .PARAMETER Temp
+        Specified the target temperature in celcius.
+    .PARAMETER Mode
+        Specifies the operating mode of the aircon device. Allowed values are;
+        AUTO  : Switches between heat and cold depending on the current and target temperature.
+        DRY   : Sets the device lower the humidity of the air.
+        COLD  : Sets the device chill the air if needed. No heat will be provided.
+        HEAT  : Sets the device heat the air if needed. No chilling of air will be provided.
+        FAN   : Sets the device to only circulate air without affecting temperature or humidity.
+    .PARAMETER FanSpeed
+        Specifies the strenght of the fan. Allowed values are;
+        AUTO   : Sets the device to manage fan speed to keep the target climate.
+        SILENT : Sets the fan speed to minimize noise.
+        Level_1 -> Level_5 : Sets the fan speed to the target level.
+    .PARAMETER FanDirection
+        Specifies how the direction of airflow is controlled. Allowed values are
+        Stopped, VerticalSwing, HorizontalSwing and BothSwing 
     .EXAMPLE
-        Set-DaikinAirCon
-        Description of example
+        Set-DaikinAirCon -HostName daikin.local.network -PowerOn:$true -Temp 19 -Mode AUTO -FanSpeed AUTO -FanDirection Stopped
+        
+        This example configures the aircon device to the specified parameter values.
     #>
 
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidInvokingEmptyMembers', '', Justification = 'asd')]

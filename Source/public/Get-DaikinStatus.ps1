@@ -11,12 +11,16 @@
 function Get-DaikinStatus {
     <#
     .DESCRIPTION
-        asd
-    .PARAMETER Name
-        Description
+        Retreives the current configuration of the Daikin AirCon device
+    .PARAMETER Hostname
+        Hostname or IP of the Daikin Aircon device.
     .EXAMPLE
-        Get-DaikinStatus
-        Description of example
+        Get-DaikinStatus -Hostname daikin.local.network
+        
+        PowerOn        : True
+        Mode           : HEAT
+        TargetTemp     : 22.0
+        ...
     #>
 
     [CmdletBinding()] # Enabled advanced function support
