@@ -9,6 +9,16 @@
           "Message": "Added tests for resolve-daikinhostname"
         }
       ]
+    },
+    {
+      "Version": "1.0.9",
+      "Date": "2021-01-06",
+      "Items": [
+        {
+          "Type": "other",
+          "Message": "Updated docs"
+        }
+      ]
     }
   ]
 }
