@@ -1,7 +1,7 @@
 
 @{
   RootModule = 'PS.Tools.Daikin.psm1'
-  ModuleVersion = '1.0.9'
+  ModuleVersion = '1.0.10'
   CompatiblePSEditions = @('Desktop','Core')
   GUID = '5588fcbe-895e-4578-b1c3-9948bc62c746'
   Author = 'Hannes Palmquist'
@@ -14,7 +14,7 @@
   PrivateData = @{
     ModuleName = 'PS.Tools.Daikin'
     DateCreated = '2020-10-03'
-    LastBuildDate = '2021-01-06'
+    LastBuildDate = '2021-01-10'
     ModuleType = ''
     PSData = @{
       Tags = @('PSEdition_Desktop','PSEdition_Core','Windows')
